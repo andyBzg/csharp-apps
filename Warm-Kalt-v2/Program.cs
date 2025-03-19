@@ -40,7 +40,7 @@ namespace Warm_Kalt_v2
             int random = rnd.Next(1, 101);
 
             Console.Write("Schwierigkeitsgrad auswählen.\nMöchten Sie Hardmode (Zahlen von 1 bis 1000) spielen? (y/n): ");
-            spielmodus = Console.ReadLine().ToLower();
+            spielmodus = Console.ReadLine();
 
             if (spielmodus != null && spielmodus.ToLower().Equals("y"))
             {
