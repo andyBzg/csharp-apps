@@ -36,31 +36,37 @@ namespace Warm_Kalt_v2
             int versuch;
             int counter = 0;
             int prevDif = 0;
+            string spielmodus;
+            int maxZahl = 100;
 
             Random rnd = new Random();
             int random = rnd.Next(1, 101);
+
+            Console.Write("Schwierigkeitsgrad auswählen. \n" +
+                "Möchten Sie Hardmode (Zahlen von 1 bis 1000) spielen? (y/n): ");
+            spielmodus = Console.ReadLine();
+            
+            if (spielmodus != null && spielmodus.ToLower().Equals("y"))
+            {
+                random = rnd.Next(1, 1001);
+                maxZahl = 1000;
+            }
 
             do
             {
                 do
                 {
-                    Console.Write("Geben Sie eine Zahl zwischen 1 und 100 ein: ");
-                    check = int.TryParse(Console.ReadLine(), out versuch) && versuch >= 1 && versuch <= 100;
+                    Console.Write($"Geben Sie eine Zahl zwischen 1 und {maxZahl} ein: ");
+                    check = int.TryParse(Console.ReadLine(), out versuch) && versuch >= 1 && versuch <= maxZahl;
                     if (!check)
                     {
-                        Console.Write("Ungültige Eingabe! Geben Sie eine Zahl zwischen 1 und 100 ein: ");
+                        Console.Write($"Ungültige Eingabe! ");
                     }
                 }
                 while (!check);
 
                 counter++;
                 int dif = Math.Abs(random - versuch);
-
-                Console.WriteLine("Try: " + versuch);
-                Console.WriteLine("Random: " + random);
-                Console.WriteLine("Dif: " + dif);
-                Console.WriteLine("PrevDif: " + prevDif);
-                Console.WriteLine("Counter: " + counter);
 
                 if (versuch == random)
                 {
@@ -70,7 +76,7 @@ namespace Warm_Kalt_v2
                             $"Anzahl Versuche: {counter}"
                             );
 
-                    Console.Write("Möchten Sie noch eine Partie spielen? (Y/N): ");
+                    Console.Write("Möchten Sie noch eine Partie spielen? (y/n): ");
                     string antwort = Console.ReadLine();
 
                     if (antwort != null && antwort.ToLower().Equals("n"))
@@ -79,7 +85,18 @@ namespace Warm_Kalt_v2
                     }
                     else if (antwort != null && antwort.ToLower().Equals("y"))
                     {
-                        random = rnd.Next(1, 101);
+                        Console.Write("Möchten Sie Hardmode (Zahlen von 1 bis 1000) spielen? (y/n): ");
+                        spielmodus = Console.ReadLine();
+                        if (spielmodus != null && spielmodus.ToLower().Equals("y"))
+                        {
+                            random = rnd.Next(1, 1001);
+                            maxZahl = 1000;
+                        }
+                        else
+                        {
+                            random = rnd.Next(1, 101);
+                            maxZahl = 100;
+                        }
                         counter = 0;
                         prevDif = 0;
                     }
