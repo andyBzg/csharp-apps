@@ -33,19 +33,15 @@ namespace Warm_Kalt_v2
         static void Main(string[] args)
         {
             bool check;
-            int versuch;
-            int counter = 0;
-            int prevDif = 0;
+            int versuch, counter = 0, prevDif = int.MaxValue, maxZahl = 100;
             string spielmodus;
-            int maxZahl = 100;
 
             Random rnd = new Random();
             int random = rnd.Next(1, 101);
 
-            Console.Write("Schwierigkeitsgrad auswählen. \n" +
-                "Möchten Sie Hardmode (Zahlen von 1 bis 1000) spielen? (y/n): ");
-            spielmodus = Console.ReadLine();
-            
+            Console.Write("Schwierigkeitsgrad auswählen.\nMöchten Sie Hardmode (Zahlen von 1 bis 1000) spielen? (y/n): ");
+            spielmodus = Console.ReadLine().ToLower();
+
             if (spielmodus != null && spielmodus.ToLower().Equals("y"))
             {
                 random = rnd.Next(1, 1001);
@@ -60,7 +56,7 @@ namespace Warm_Kalt_v2
                     check = int.TryParse(Console.ReadLine(), out versuch) && versuch >= 1 && versuch <= maxZahl;
                     if (!check)
                     {
-                        Console.Write($"Ungültige Eingabe! ");
+                        Console.Write("Ungültige Eingabe! ");
                     }
                 }
                 while (!check);
@@ -75,7 +71,6 @@ namespace Warm_Kalt_v2
                             $"Verschteckte Zahl: {random}\n" +
                             $"Anzahl Versuche: {counter}"
                             );
-
                     Console.Write("Möchten Sie noch eine Partie spielen? (y/n): ");
                     string antwort = Console.ReadLine();
 
@@ -87,6 +82,7 @@ namespace Warm_Kalt_v2
                     {
                         Console.Write("Möchten Sie Hardmode (Zahlen von 1 bis 1000) spielen? (y/n): ");
                         spielmodus = Console.ReadLine();
+
                         if (spielmodus != null && spielmodus.ToLower().Equals("y"))
                         {
                             random = rnd.Next(1, 1001);
@@ -97,6 +93,7 @@ namespace Warm_Kalt_v2
                             random = rnd.Next(1, 101);
                             maxZahl = 100;
                         }
+
                         counter = 0;
                         prevDif = 0;
                     }
@@ -129,7 +126,6 @@ namespace Warm_Kalt_v2
                 prevDif = dif;
             }
             while (true);
-
         }
     }
 }
