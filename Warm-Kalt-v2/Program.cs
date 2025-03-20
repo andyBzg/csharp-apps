@@ -32,68 +32,46 @@ namespace Warm_Kalt_v2
     {
         static void Main(string[] args)
         {
-            bool check;
-            int versuch, counter = 0, prevDif = int.MaxValue, maxZahl = 100;
-            string spielmodus;
+            int versuch, maxZahl;
+            int counter = 0;
+            int prevDif = int.MaxValue;
 
             Random rnd = new Random();
-            int random = rnd.Next(1, 101);
+            int random;
 
             Console.Write("Schwierigkeitsgrad auswählen.\nMöchten Sie Hardmode (Zahlen von 1 bis 1000) spielen? (y/n): ");
-            spielmodus = Console.ReadLine();
-
-            if (spielmodus != null && spielmodus.ToLower().Equals("y"))
-            {
-                random = rnd.Next(1, 1001);
-                maxZahl = 1000;
-            }
+            maxZahl = Console.ReadLine()?.ToLower() == "y" ? 1000 : 100;
+            random = rnd.Next(1, maxZahl + 1);
 
             do
             {
-                do
+                while (true)
                 {
                     Console.Write($"Geben Sie eine Zahl zwischen 1 und {maxZahl} ein: ");
-                    check = int.TryParse(Console.ReadLine(), out versuch) && versuch >= 1 && versuch <= maxZahl;
-                    if (!check)
+                    if (int.TryParse(Console.ReadLine(), out versuch) && versuch >= 1 && versuch <= maxZahl)
                     {
-                        Console.Write("Ungültige Eingabe! ");
+                        break;
                     }
+                    Console.Write("Ungültige Eingabe! ");
                 }
-                while (!check);
 
                 counter++;
                 int dif = Math.Abs(random - versuch);
 
                 if (versuch == random)
                 {
-                    Console.WriteLine(
-                            $"Herzlichen Glückwunsch, Sie haben gewonnen! \n" +
-                            $"Verschteckte Zahl: {random}\n" +
-                            $"Anzahl Versuche: {counter}"
-                            );
+                    Console.WriteLine($"Herzlichen Glückwunsch, Sie haben gewonnen!\nVerschteckte Zahl: {random}\nAnzahl Versuche: {counter}");
                     Console.Write("Möchten Sie noch eine Partie spielen? (y/n): ");
-                    string antwort = Console.ReadLine();
 
-                    if (antwort != null && antwort.ToLower().Equals("n"))
+                    if (Console.ReadLine()?.ToLower() == "n")
                     {
                         break;
                     }
-                    else if (antwort != null && antwort.ToLower().Equals("y"))
+                    else 
                     {
                         Console.Write("Möchten Sie Hardmode (Zahlen von 1 bis 1000) spielen? (y/n): ");
-                        spielmodus = Console.ReadLine();
-
-                        if (spielmodus != null && spielmodus.ToLower().Equals("y"))
-                        {
-                            random = rnd.Next(1, 1001);
-                            maxZahl = 1000;
-                        }
-                        else
-                        {
-                            random = rnd.Next(1, 101);
-                            maxZahl = 100;
-                        }
-
+                        maxZahl = Console.ReadLine()?.ToLower() == "y" ? 1000 : 100;
+                        random = rnd.Next(1, maxZahl + 1);
                         counter = 0;
                         prevDif = 0;
                     }
@@ -101,14 +79,7 @@ namespace Warm_Kalt_v2
 
                 if (counter == 1)
                 {
-                    if (dif <= 15)
-                    {
-                        Console.WriteLine("Warm");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Kalt");
-                    }
+                    Console.WriteLine(dif <= 15 ? "Warm" : "Kalt");
                 }
                 else if (prevDif > 0 && dif < prevDif)
                 {
@@ -117,10 +88,6 @@ namespace Warm_Kalt_v2
                 else if (prevDif > 0 && dif > prevDif)
                 {
                     Console.WriteLine("kälter");
-                }
-                else if (prevDif > 0 && dif == prevDif)
-                {
-                    Console.WriteLine("gleich");
                 }
 
                 prevDif = dif;
