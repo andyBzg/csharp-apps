@@ -30,99 +30,60 @@
     {
         static void Main(string[] args)
         {
-            int versuch;
-            int differenz = 0;
-            int prevDifferenz = -1;
-            int counter = 0;
-            bool check;
-
-            string antwort = "";
-
-            string nachrichtBisHundert = "Geben Sie eine Zahl zwischen 1 und 100 ein: ";
-            //string nachrichtBisTausend = "Geben Sie eine Zahl zwischen 1 und 1000 ein: ";
-
             Random rnd = new Random();
-            int randomZahlBisHundert = rnd.Next(1, 101);
-            //Console.WriteLine($"Random: {randomZahlBisHundert}");
+            bool weiterSpielen;
 
-            //int randomBisTausend = rnd.Next(1, 1001);
-            //Console.WriteLine(randomBisTausend);
-
-            Console.Write(nachrichtBisHundert);
-
-            while (true)
+            do
             {
-                do
+                int versuch, counter = 0, prevDif = int.MaxValue;
+
+                Console.Write("Schwierigkeitsgrad auswählen.\nMöchten Sie Hardmode (Zahlen von 1 bis 1000) spielen? (y/n): ");
+                bool hardmode = Console.ReadLine()?.ToLower() == "y";
+                int maxZahl = hardmode ? 1000 : 100;
+                int random = rnd.Next(1, maxZahl + 1);
+
+                Console.WriteLine($"Das Spiel beginnt! Erraten Sie eine Zahl von 1 bis {maxZahl}.");
+
+                while (true)
                 {
-                    Console.WriteLine("Geben Sie ein Zahl ein:");
-                    check = int.TryParse(Console.ReadLine(), out versuch) && versuch >= 1 && versuch <= 100;
-                    if (!check)
+                    while (true)
                     {
-                        Console.Write($"Ungültige Eingabe! {nachrichtBisHundert}");
+                        Console.Write($"Geben Sie eine Zahl zwischen 1 und {maxZahl} ein: ");
+
+                        if (int.TryParse(Console.ReadLine(), out versuch) && versuch >= 1 && versuch <= maxZahl)
+                        {
+                            break;
+                        }
+                        Console.Write("Ungültige Eingabe! ");
                     }
-                }
-                while (!check);
 
-                if (versuch == randomZahlBisHundert)
-                {
-                    Console.WriteLine(
-                        $"Herzlichen Glückwunsch, Sie haben gewonnen! \n" +
-                        $"Verschteckte Zahl: {randomZahlBisHundert}\n" +
-                        $"Anzahl Versuche: {counter + 1}"
-                        );
+                    counter++;
+                    int dif = Math.Abs(random - versuch);
 
-                    versuch = 0;
-                    differenz = 0;
-                    prevDifferenz = 0;
-                    counter = 0;
-
-                    Console.Write("Möchten Sie noch eine Partie spielen? (Y/N): ");
-                    antwort = Console.ReadLine();
-                    if (antwort != null && antwort.ToLower().Equals("n"))
+                    if (versuch == random)
                     {
+                        Console.WriteLine($"Herzlichen Glückwunsch, Sie haben gewonnen! \nVerschteckte Zahl: {random}\nAnzahl Versuche: {counter}");
                         break;
                     }
-                    else if (antwort != null && antwort.ToLower().Equals("y"))
-                    {
-                        versuch = 0;
-                        differenz = 0;
-                        prevDifferenz = 0;
-                        counter = 0;
-                        antwort = "";
-                        randomZahlBisHundert = rnd.Next(1, 101);
-                        Console.Write(nachrichtBisHundert);
-                    }
-                }
 
-                differenz = Math.Abs(randomZahlBisHundert - versuch);
-
-                if (counter == 0)
-                {
-                    if (differenz < 20)
-                    {
-                        Console.WriteLine("Warm");
-                    }
+                    if (counter == 1)
+                        Console.WriteLine(dif <= 15 ? "Warm" : "Kalt");
+                    else if (prevDif > 0 && dif < prevDif)
+                        Console.WriteLine("wärmer");
+                    else if (prevDif > 0 && dif > prevDif)
+                        Console.WriteLine("kälter");
                     else
-                    {
-                        Console.WriteLine("Kalt");
-                    }
-                }
-                else if (differenz < prevDifferenz)
-                {
-                    Console.WriteLine("wärmer");
-                }
-                else if (differenz > prevDifferenz)
-                {
-                    Console.WriteLine("kälter");
-                }
-                else
-                {
-                    Console.WriteLine("gleich");
+                        Console.WriteLine("gleich");
+
+                    prevDif = dif;
                 }
 
-                counter++;
-                prevDifferenz = differenz;
+                Console.Write("Möchten Sie noch eine Partie spielen? (y/n): ");
+                weiterSpielen = Console.ReadLine()?.ToLower() == "y";
             }
+            while (weiterSpielen);
+
+            Console.WriteLine("Danke fürs Spiel!");
         }
     }
 }
