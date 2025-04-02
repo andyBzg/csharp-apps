@@ -18,7 +18,7 @@
             Console.WriteLine(stringArr[0]);
 
             // Array erstellen, der direkt mit Werten befüllt wird
-            int[] intArr2 = { 247, 685, 1, 13, 42, 6 }; // Größe üdes Arrays: 6
+            int[] intArr2 = { 247, 685, 1, 13, 42, 6 }; // Größe des Arrays: 6
             intArr2[0] = 25;
         }
     }

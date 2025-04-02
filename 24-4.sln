@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zufallszahlen", "Zufallszah
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe_PasswordGenerator", "Aufgabe_PasswordGenerator\Aufgabe_PasswordGenerator.csproj", "{23F76029-C862-4728-983E-C10055094E6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe_Lotto", "Aufgabe_Lotto\Aufgabe_Lotto.csproj", "{5860A767-E9D7-4713-9BAD-BD95850134BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +143,10 @@ Global
 		{23F76029-C862-4728-983E-C10055094E6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23F76029-C862-4728-983E-C10055094E6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23F76029-C862-4728-983E-C10055094E6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5860A767-E9D7-4713-9BAD-BD95850134BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5860A767-E9D7-4713-9BAD-BD95850134BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5860A767-E9D7-4713-9BAD-BD95850134BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5860A767-E9D7-4713-9BAD-BD95850134BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
