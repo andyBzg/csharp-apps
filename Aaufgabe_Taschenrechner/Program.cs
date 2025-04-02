@@ -6,6 +6,9 @@ namespace Aaufgabe_Taschenrechner
         static void Main(string[] args)
         {
             bool weiterRechnen = true;
+            double zahl1, zahl2;
+            int index;
+            bool check;
 
             // Begrüssung
             Console.WriteLine("******************************");
@@ -16,10 +19,10 @@ namespace Aaufgabe_Taschenrechner
             do
             {
                 // Eingabe der 1. Zahl
-                double zahl1 = ZahlEingabe("Bitte geben Sie 1. Zahl ein: ");
+                zahl1 = ZahlEingabe("Bitte geben Sie 1. Zahl ein: ");
 
                 // Eingabe der 2. Zahl
-                double zahl2 = ZahlEingabe("Bitte geben Sie 2. Zahl ein: ");
+                zahl2 = ZahlEingabe("Bitte geben Sie 2. Zahl ein: ");
 
                 // Auswahl der Rechnerart: + - * /
                 // Hier bietet sich ein Menü an (switch)
@@ -29,8 +32,6 @@ namespace Aaufgabe_Taschenrechner
                 Console.WriteLine("[3] *");
                 Console.WriteLine("[4] /");
 
-                int index;
-                bool check;
                 do
                 {
                     Console.Write("Bitte Rechenart auswählen: ");
@@ -43,19 +44,19 @@ namespace Aaufgabe_Taschenrechner
                 switch (index)
                 {
                     case 1:
-                        Console.WriteLine($"Antwort: {zahl1 + zahl2}");
+                        Console.WriteLine($"Ergebnis: {zahl1 + zahl2}");
                         break;
                     case 2:
-                        Console.WriteLine($"Antwort: {zahl1 - zahl2}");
+                        Console.WriteLine($"Ergebnis: {zahl1 - zahl2}");
                         break;
                     case 3:
-                        Console.WriteLine($"Antwort: {zahl1 * zahl2}");
+                        Console.WriteLine($"Ergebnis: {zahl1 * zahl2}");
                         break;
                     case 4:
                         if (zahl2 == 0)
                             Console.WriteLine("Teilen durch 0 nicht möglich");
                         else
-                            Console.WriteLine($"Antwort: {zahl1 / zahl2}");
+                            Console.WriteLine($"Ergebnis: {zahl1 / zahl2}");
                         break;
                     default:
                         Console.Write("Kein Recherart ausgewählt.");
@@ -64,6 +65,7 @@ namespace Aaufgabe_Taschenrechner
 
                 Console.Write("Möchten Sie fortsetzen? (y/n): ");
                 weiterRechnen = Console.ReadLine()?.ToLower() == "y";
+                Console.Clear();
             }
             while (weiterRechnen);
 
@@ -72,11 +74,11 @@ namespace Aaufgabe_Taschenrechner
             Console.WriteLine(" Auf Wiedersehen und einen schönen Tag! ");
             Console.WriteLine("******************************");
 
-            // optional: Das Programm wird dauernd wiederholt
-            // optional: DAU-Sicherheit der Eingaben
-            // optional: Sicherstellen, dass eine Berechnung mathematisch möglich ist
+            // (x) optional: Das Programm wird dauernd wiederholt
+            // (x) optional: DAU-Sicherheit der Eingaben
+            // (x) optional: Sicherstellen, dass eine Berechnung mathematisch möglich ist
 
-            // super-optional: Korrekte Berechnung mit 3 Zahlen:
+            // (-) super-optional: Korrekte Berechnung mit 3 Zahlen:
             // Beachten Sie Punkt-vor-Strich
         }
 
