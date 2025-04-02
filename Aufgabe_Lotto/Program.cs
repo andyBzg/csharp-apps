@@ -23,19 +23,8 @@
             int[] userEingabe = new int[6];
             int[] gewinnzahlen = new int[6];
             bool check;
-            int counter = 0;
+            int neueZahl, counter = 0;
 
-            for (int i = 0; i < gewinnzahlen.Length; i++)
-            {
-                int neueZahl;
-                do
-                {
-                    neueZahl = rnd.Next(1, 50);
-
-                } while (gewinnzahlen.Contains(neueZahl));
-                gewinnzahlen[i] = neueZahl;
-            }
-            
             // Begrüssung: Lotto 6 aus 49
             Console.WriteLine("**************************************");
             Console.WriteLine("* Willkommen beim Lotto 6 aus 49! *");
@@ -48,7 +37,7 @@
             {
                 do
                 {
-                    Console.Write("Bitte geben Sie ein Zahl zwischen 1 und 49: ");
+                    Console.Write($"Bitte geben Sie {i + 1}. Zahl ein: ");
                     check = int.TryParse(Console.ReadLine(), out userEingabe[i]);
                     if (!check)
                     {
@@ -66,6 +55,16 @@
                     }
                 }
                 while (!check);
+            }
+
+            // 6 Zufallszahlen erzeugen & Speicherung in einem anderen Array
+            for (int i = 0; i < gewinnzahlen.Length; i++)
+            {
+                do
+                {
+                    neueZahl = rnd.Next(1, 50);
+                } while (gewinnzahlen.Contains(neueZahl));
+                gewinnzahlen[i] = neueZahl;
             }
 
             // Vergleich der Zahlen und Ermittlung der Anzahl der "Richtigen"
