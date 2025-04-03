@@ -58,7 +58,7 @@
             {
                 Console.Clear();
                 Console.WriteLine("+++++++++++++++++++");
-                Console.WriteLine("Die Ware ist nicht auf Lager. Ein Verkauf ist nicht möglich");
+                Console.WriteLine("Die Ware ist nicht auf Lager. Ein Verkauf ist nicht möglich.");
                 Console.WriteLine("Die Ware wird bestellt. Der Kaufantrag wurde abgelehnt.");
                 Console.WriteLine("+++++++++++++++++++");
             }

@@ -47,12 +47,17 @@
         static void Main(string[] args)
         {
             Random rnd = new Random();
-            string[] woerter = { "Salbe", "Blume", "Worte", "Farbe", "Glück", "Traum", "Karte", "Welle", "Sturm", "Licht" };
+            string[] woerter =
+                {
+                    "Salbe", "Blume", "Worte", "Farbe", "Glück", "Traum", "Karte", "Welle", "Sturm", "Licht",
+                    "Dampf", "Tisch", "Brand", "Regen", "Stein", "Pferd", "Brot", "Herz", "Schar", "Kranz",
+                    "Fisch", "Lager", "Warte", "Maler", "Preis", "Wurst", "Blitz", "Garde", "Kunst", "Spitz"
+                };
             char[] randomWortChars, eingabeChars;
             string? eingabe;
             string randomWort;
 
-            randomWort = woerter[rnd.Next(woerter.Length)];
+            randomWort = woerter[rnd.Next(woerter.Length)].ToLower();
             randomWortChars = randomWort.ToCharArray();
 
             Console.WriteLine("Willkommen zu Wordle!");
@@ -64,7 +69,7 @@
                 while (true)
                 {
                     Console.Write("Bitte geben Sie ein Wort ein: ");
-                    eingabe = Console.ReadLine();
+                    eingabe = Console.ReadLine()?.ToLower();
 
                     if (string.IsNullOrEmpty(eingabe))
                     {
@@ -88,9 +93,10 @@
 
                 if (randomWort == eingabe)
                 {
+                    Console.WriteLine();
                     Console.WriteLine("Glückwunsch! Sie haben gewonnen!");
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine(eingabe);
+                    Console.WriteLine(char.ToUpper(randomWort[0]) + randomWort.Substring(1));
                     Console.ResetColor();
                     Console.ReadKey();
                     break;
@@ -102,18 +108,18 @@
                         if (randomWortChars[j] == eingabeChars[j])
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write(eingabeChars[j]);
+                            Console.Write(j == 0 ? char.ToUpper(eingabeChars[j]) : eingabeChars[j]);
                             Console.ResetColor();
                         }
                         else if (randomWortChars.Contains(eingabeChars[j]))
                         {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(eingabeChars[j]);
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write(j == 0 ? char.ToUpper(eingabeChars[j]) : eingabeChars[j]);
                             Console.ResetColor();
                         }
                         else
                         {
-                            Console.Write(eingabeChars[j]);
+                            Console.Write(j == 0 ? char.ToUpper(eingabeChars[j]) : eingabeChars[j]);
                         }
                     }
 
@@ -127,7 +133,7 @@
                     {
                         Console.WriteLine("\n");
                         Console.WriteLine("You lose. Game over");
-                        Console.WriteLine($"Das richtige Wort war: *{randomWort}*");
+                        Console.WriteLine($"Das richtige Wort war: *{char.ToUpper(randomWort[0]) + randomWort.Substring(1)}*");
                         Console.ReadKey();
                     }
                 }
