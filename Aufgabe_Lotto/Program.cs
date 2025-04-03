@@ -23,7 +23,7 @@
             int[] userEingabe = new int[6];
             int[] gewinnzahlen = new int[6];
             bool check;
-            int neueZahl, counter = 0;
+            int neueZahl, richtige = 0;
 
             // Begrüssung: Lotto 6 aus 49
             Console.WriteLine("**************************************");
@@ -68,13 +68,13 @@
             }
 
             // Vergleich der Zahlen und Ermittlung der Anzahl der "Richtigen"
-            for (int i = 0; i < gewinnzahlen.Length; i++)
+            foreach (var item in gewinnzahlen)
             {
-                for (int j = 0; j < userEingabe.Length; j++)
+                foreach (var item1 in userEingabe)
                 {
-                    if (userEingabe[j] == gewinnzahlen[i])
+                    if (item == item1)
                     {
-                        counter++;
+                        richtige++;
                     }
                 }
             }
@@ -82,20 +82,20 @@
             // Ausgabe: Gezogene Zahl, getippten Zahlen, Anzahl "Richtige"
             Console.Clear();
             Console.Write("Gezogene Zahlen: ");
-            for (int i = 0; i < gewinnzahlen.Length; i++)
+            foreach (var item in gewinnzahlen)
             {
-                Console.Write(gewinnzahlen[i] + " ");
+                Console.Write(item + " ");
             }
             Console.WriteLine();
 
             Console.Write("Getippten Zahlen: ");
-            for (int i = 0; i < userEingabe.Length; i++)
+            foreach (var item in userEingabe)
             {
-                Console.Write(userEingabe[i] + " ");
+                Console.Write(item + " ");
             }
             Console.WriteLine();
 
-            Console.WriteLine($"Anzahl \"Richtige\": {counter}");
+            Console.WriteLine($"Anzahl \"Richtige\": {richtige}");
         }
     }
 }
