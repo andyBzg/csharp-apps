@@ -69,6 +69,7 @@
                                 counter++;
                                 break;
                             default:
+                                Console.WriteLine($"Sie haben gewählt: {antwort}");
                                 Console.WriteLine("Leider falsch :(");
                                 break;
                         }
