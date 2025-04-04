@@ -1,4 +1,5 @@
-﻿namespace Aufgabe_Fibonacci
+﻿
+namespace Aufgabe_Fibonacci
 {
     /*Der User soll angeben können wie viele Zahlen der Fibonacci-Folge er berechnet haben möchte. 
 
@@ -16,17 +17,17 @@
     {
         static void Main(string[] args)
         {
-            uint anzahl;
+            int anzahl;
 
             Console.WriteLine("Wie viele Zahlen der Fibonacci-Folge möchten Sie berechnen?");
             Console.Write("Anzahl: ");
-            bool check = uint.TryParse(Console.ReadLine(), out anzahl);
+            bool check = int.TryParse(Console.ReadLine(), out anzahl);
 
             if (check && anzahl > 0)
             {
-                int a = 0;
-                int b = 1;
-                int c;
+                ulong a = 0;
+                ulong b = 1;
+                ulong c;
 
                 for (int i = 0; i < anzahl; i++)
                 {
@@ -40,7 +41,6 @@
             {
                 Console.WriteLine("Fehler: Bitte geben Sie eine gültige positive Zahl ein.");
             }
-
         }
     }
 }
