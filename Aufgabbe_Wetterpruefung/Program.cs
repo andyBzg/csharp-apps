@@ -17,11 +17,10 @@
             do
             {
                 Console.Write("Bitte geben Sie das Wetter an (sonnig/regnerisch): ");
-                wetter = Console.ReadLine()?.ToLower();
+                wetter = Console.ReadLine()?.ToLower().Trim();
 
                 if (wetter != null && wetter == "sonnig" || wetter == "regnerisch")
                 {
-                    Console.WriteLine($"Das Wetter ist {wetter}");
                     do
                     {
                         Console.Write("Bitte geben Sie die Temperatur an: ");

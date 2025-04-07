@@ -20,8 +20,8 @@
 
             // Numerischen Datentüpen ß Gleitkommazahl
             float f;        // 7-8 Stellen: 0,123456 / 1234567
-            double d;       // 15 Stellen
-            decimal de;     // 28 Stellen
+            double d;       // 15 Stellen | hat Rundungsfehler, da er nicht alle Stellen speichern kann
+            decimal de;     // 28 Stellen | wird für Geldbeträge verwendet, da er keine Rundungsfehler hat
 
             f = 42.35F;
             d = 42.35;
