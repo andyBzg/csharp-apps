@@ -54,6 +54,8 @@ namespace Dictionarys
 
             if (geladenesDictionary != null)
                 Console.WriteLine("Funktion von Thorsten: " + geladenesDictionary["funktion"]);
+
+            Console.WriteLine(jsonString);
         }
     }
 }
