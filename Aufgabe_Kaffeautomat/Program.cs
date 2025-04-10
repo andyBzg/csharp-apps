@@ -25,11 +25,19 @@ namespace Aufgabe_Kaffeautomat
     {
         static void Main(string[] args)
         {
-            int index, countKaffeausgaben = 0, maxAusgaben = 30, wasser = 1000, bohnen = 500, maxWasser = 2000, maxBohnen = 1000;
+            int index, countKaffeausgaben = 0, maxAusgaben = 30, wasser = 1000, bohnen = 500, maxWasser = 2000, maxBohnen = 1000, wasserProKaffee = 200, bohnenProKafee = 50;
             bool weiter = true;
             string filename = "history.json";
             string[] menue = { "Kaffee zubereiten", "Wasser auffüllen", "Bohnen auffüllen", "Entkalken", "Aktueller Stand", "Historie" };
-            Dictionary<string, string> history = new Dictionary<string, string>();
+            Dictionary<string, string>? history = new Dictionary<string, string>();
+
+            if (File.Exists(filename))
+            {
+                string historyText = File.ReadAllText(filename);
+                history = JsonSerializer.Deserialize<Dictionary<string, string>>(historyText);
+            }
+            if (history == null)
+                history = new Dictionary<string, string>();
 
             do
             {
@@ -54,7 +62,7 @@ namespace Aufgabe_Kaffeautomat
                 switch (index)
                 {
                     case 1:
-                        countKaffeausgaben += BereiteKaffeeZu(ref wasser, ref bohnen);
+                        countKaffeausgaben += BereiteKaffeeZu(ref wasser, ref bohnen, wasserProKaffee, bohnenProKafee);
                         AddToHistory(history, filename, "Kaffee zubereiten");
                         break;
                     case 2:
@@ -73,7 +81,7 @@ namespace Aufgabe_Kaffeautomat
                         StatusAnzeigen(wasser, bohnen, countKaffeausgaben, maxAusgaben);
                         break;
                     case 6:
-                        HistoryAnzeigen(filename);
+                        HistoryAnzeigen(history);
                         break;
                     default:
                         PrintInRed("Unbekannter Fehler...");
@@ -113,17 +121,18 @@ namespace Aufgabe_Kaffeautomat
             return index;
         }
 
-        private static void HistoryAnzeigen(string filename)
+        private static void HistoryAnzeigen(Dictionary<string, string>? history)
         {
-            Console.WriteLine("Historie wird angezeigt...");
-            string gelesenerText = File.ReadAllText(filename);
-            Dictionary<string, string>? geladenesDictionary = JsonSerializer.Deserialize<Dictionary<string, string>>(gelesenerText);
-            if (geladenesDictionary != null)
+            if (history != null && history.Count > 0)
             {
-                foreach (var key in geladenesDictionary.Keys)
+                foreach (var item in history)
                 {
-                    Console.WriteLine($"{key} : {geladenesDictionary[key]}");
+                    Console.WriteLine($"{item.Key} {item.Value}");
                 }
+            }
+            else
+            {
+                Console.WriteLine("Historie ist leer");
             }
         }
 
@@ -199,14 +208,14 @@ namespace Aufgabe_Kaffeautomat
             Console.WriteLine($"Wasser erfolgreich aufgefüllt. Aktueller Stand: {wasser} ml.");
         }
 
-        private static int BereiteKaffeeZu(ref int wasser, ref int bohnen)
+        private static int BereiteKaffeeZu(ref int wasser, ref int bohnen, int wasserProKaffee, int bohnenProKafee)
         {
-            if (wasser < 200)
+            if (wasser < wasserProKaffee)
             {
                 PrintInRed("Bitte Wasser nachfüllen");
                 return 0;
             }
-            else if (bohnen < 10)
+            else if (bohnen < bohnenProKafee)
             {
                 PrintInRed("Bitte Bohnen nachfüllen");
                 return 0;
@@ -214,8 +223,8 @@ namespace Aufgabe_Kaffeautomat
             else
             {
                 Console.WriteLine("Zubereitung im Fortschritt...");
-                wasser -= 200;
-                bohnen -= 10;
+                wasser -= wasserProKaffee;
+                bohnen -= bohnenProKafee;
                 Thread.Sleep(3000);
                 Console.WriteLine("Kaffee ist fertig!");
                 return 1;
