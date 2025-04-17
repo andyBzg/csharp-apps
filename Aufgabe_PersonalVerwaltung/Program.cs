@@ -16,13 +16,15 @@ namespace Aufgabe_PersonalVerwaltung
             string id, filename = "mitarbeiter.json";
             string[] informationen = { "Name", "Nachname", "Urlaubstage", "Krankheitstage" };
             string[] menue = { "Alle Mitarbeiter anzeigen", "Mitarbeiter mit Id suchen", "Neuer Mitarbeiter erstellen", "Mitarbeiter entfernen", "Programm beenden" };
+            Dictionary<string, Dictionary<string, object>>? employeesDictionary = new Dictionary<string, Dictionary<string, object>>();
 
-            if (!File.Exists(filename))
+            if (File.Exists(filename))
             {
-                Dictionary<string, Dictionary<string, object>> dictionary = new Dictionary<string, Dictionary<string, object>>();
-                string jsonString = JsonSerializer.Serialize(dictionary, new JsonSerializerOptions { WriteIndented = true });
-                File.WriteAllText(filename, jsonString);
+                string jsonText = File.ReadAllText(filename);
+                employeesDictionary = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(jsonText);
             }
+            if (employeesDictionary == null)
+                employeesDictionary = new Dictionary<string, Dictionary<string, object>>();
 
             do
             {
@@ -30,18 +32,16 @@ namespace Aufgabe_PersonalVerwaltung
                 switch (index)
                 {
                     case 1:
-                        LoadAllEmployeesFromFile(filename);
+                        FindAllEmployees(employeesDictionary);
                         break;
                     case 2:
-                        id = GetMitarbeiterId();
-                        LoadEmployeeByIdFromFile(filename, id);
+                        FindEmployeeById(employeesDictionary);
                         break;
                     case 3:
-                        RegisterEmployee(filename);
+                        RegisterEmployee(employeesDictionary, filename);
                         break;
                     case 4:
-                        id = GetMitarbeiterId();
-                        RemoveEmployeeById(filename, id);
+                        RemoveEmployeeById(employeesDictionary, filename);
                         break;
                     case 5:
                         weiter = false;
@@ -57,7 +57,7 @@ namespace Aufgabe_PersonalVerwaltung
             } while (weiter);
         }
 
-        private static string GetMitarbeiterId()
+        private static string GetEmployeeId()
         {
             Console.Write("Bitte Mitarbeiter Id eingeben: ");
             return Console.ReadLine() ?? "";
@@ -82,14 +82,13 @@ namespace Aufgabe_PersonalVerwaltung
             return index;
         }
 
-        private static void RemoveEmployeeById(string filename, string id)
+        private static void RemoveEmployeeById(Dictionary<string, Dictionary<string, object>> employees, string filename)
         {
-            string file = File.ReadAllText(filename);
-            Dictionary<string, Dictionary<string, object>>? dictionary = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(file);
-            if (dictionary != null && dictionary.ContainsKey(id))
+            string id = GetEmployeeId();
+            if (employees.Count > 0 && employees.ContainsKey(id))
             {
-                dictionary.Remove(id);
-                SaveEmployeesToFile(filename, dictionary);
+                employees.Remove(id);
+                SaveEmployeesToFile(filename, employees);
                 Console.WriteLine($"Mitarbeiter mit id {id} wurde erfolrgreich entfernt");
             }
             else
@@ -98,14 +97,12 @@ namespace Aufgabe_PersonalVerwaltung
             }
         }
 
-        private static void LoadEmployeeByIdFromFile(string filename, string id)
+        private static void FindEmployeeById(Dictionary<string, Dictionary<string, object>> employees)
         {
-            string gelesenerText = File.ReadAllText(filename);
-            Dictionary<string, object>? geladenesDictionary = JsonSerializer.Deserialize<Dictionary<string, object>>(gelesenerText);
-
-            if (geladenesDictionary != null && geladenesDictionary.ContainsKey(id))
+            string id = GetEmployeeId();
+            if (employees.Count > 0 && employees.ContainsKey(id))
             {
-                Console.WriteLine(geladenesDictionary[id]);
+                Console.WriteLine(employees[id]);
             }
             else
             {
@@ -113,18 +110,16 @@ namespace Aufgabe_PersonalVerwaltung
             }
         }
 
-        private static void LoadAllEmployeesFromFile(string filename)
+        private static void FindAllEmployees(Dictionary<string, Dictionary<string, object>> employees)
         {
-            string gelesenerText = File.ReadAllText(filename);
-            Dictionary<string, Dictionary<string, object>>? geladenesDictionary = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(gelesenerText);
-            if (geladenesDictionary != null)
+            if (employees.Count > 0)
             {
-                foreach (var id in geladenesDictionary.Keys)
+                foreach (var id in employees.Keys)
                 {
                     Console.WriteLine($"ID: {id}");
-                    foreach (var key in geladenesDictionary[id].Keys)
+                    foreach (var key in employees[id].Keys)
                     {
-                        Console.WriteLine($"{key}: {geladenesDictionary[id][key]}");
+                        Console.WriteLine($"{key}: {employees[id][key]}");
                     }
                     Console.WriteLine();
                 }
@@ -141,18 +136,11 @@ namespace Aufgabe_PersonalVerwaltung
             File.WriteAllText(filename, jsonString);
         }
 
-        private static void RegisterEmployee(string filename)
+        private static void RegisterEmployee(Dictionary<string, Dictionary<string, object>> employees, string filename)
         {
-            string file = File.ReadAllText(filename);
-            Dictionary<string, Dictionary<string, object>>? dictionary = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, object>>>(file);
-            if (dictionary == null)
-            {
-                dictionary = new Dictionary<string, Dictionary<string, object>>();
-            }
+            string id = GetEmployeeId();
 
-            string id = GetMitarbeiterId();
-
-            if (dictionary.ContainsKey(id))
+            if (employees.ContainsKey(id))
             {
                 Console.WriteLine($"Fehler: Mitarbeiter mit id {id} ist bereits registriert");
             }
@@ -160,16 +148,16 @@ namespace Aufgabe_PersonalVerwaltung
             {
                 Dictionary<string, object> employee = new Dictionary<string, object>();
                 Console.Write("Bitte Namen eingeben: ");
-                employee.Add("Name", Console.ReadLine() ?? "");
+                employee.Add("Name", (Console.ReadLine() ?? "").Trim());
                 Console.Write("Bitte Nachname eingeben: ");
-                employee.Add("Nachname", Console.ReadLine() ?? "");
+                employee.Add("Nachname", (Console.ReadLine() ?? "").Trim());
                 Console.Write("Bitte Urlaubstage eingeben: ");
                 int.TryParse(Console.ReadLine(), out int tage);
                 employee.Add("Urlaubstage", tage);
                 employee.Add("Krankheitstage", new string[] { });
 
-                dictionary.Add(id, employee);
-                SaveEmployeesToFile(filename, dictionary);
+                employees.Add(id, employee);
+                SaveEmployeesToFile(filename, employees);
             }
         }
     }
