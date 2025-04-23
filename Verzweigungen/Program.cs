@@ -6,11 +6,11 @@
         {
             // Verzweigungen sind Wahrheitsabfragen gefolgt von auszuführendem Code
 
-            // if (bedingung) Aktion
-            // else if (alternative bedingung) Aktion (Diese wird nur aufgeführen wenn vorgerige Wahrheitsabfragen nicht zutreffen)
-            // else Aktion (Diese unabhängig von einer Bedingung wird aufgerufen wenn alle vorherigen abfragen scheitern)
-
             // Kontrollstruktur mit if-else
+            // if (bedingung) {Aktion}
+            // else if (alternative bedingung) {Aktion} (Diese wird nur aufgeführen wenn vorgerige Wahrheitsabfragen nicht zutreffen)
+            // else {Aktion} (Diese unabhängig von einer Bedingung wird aufgerufen wenn alle vorherigen abfragen scheitern)
+
             if (true != false)
             {
                 Console.WriteLine("Wahr ist nicht falsch");
@@ -18,7 +18,17 @@
             else if (false) Console.WriteLine("Wird niemals aufgeführen"); // Wenn es nur eune einzige Aktion gibt können wir in einer Zeile mit der Bedingung schreiben
             else Console.WriteLine("Wird niemals aufgeführen");
 
-            // Kontrollstruktur mit switch-case
+            // Kontrollstruktur mit switch-case (Mehrseitiger Fallauswahl)
+            // switch (variabel)
+            // {
+            //      case wert: belibig viele
+            //          Aktion
+            //          break;
+            //      default:
+            //          Aktion
+            //          break;
+            // }
+
             string wohentag = "Donnerstag";
 
             switch (wohentag)

@@ -17,13 +17,14 @@
                 Console.WriteLine(item);
             }
 
-            /* Aufgabe:
-            Programmiere in C# nur mit der nutzung von Arrays folgendes:
-            In einem Lagersystem hat 100 Plätze. Über ein Menü können wir Bauteile und 
-            schrauben über die Konsole in unser Lagersysten eintragen. Wenn ein Lagerplatz bereits belegt ist 
-            soll darauf verwiesen werden das element woander zu lagern. Wir können über die Lagerplatznummer uns auch 
-            Elemente anfordern die wir dann entfernen können wen wir das wollen. und wir müssen 
-            die möglichkeit haben Das Lager auszugeben in der Konsole. */
+            List<string> list = new List<string>(5); // Die anfängliche Größe der Liste wird in Klammern angegeben
+
+            int[] array = new int[10];
+            List<int> ints = new List<int>(array);
+
+            // Typle
+            var daten = ("Sport", 16, true);
+            (string name, int alter, bool anwesend) test = ("Anna", 17, true);
         }
     }
 }

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_Brauerei", "Console_Brauerei\Console_Brauerei.csproj", "{C99BDDC0-B491-4A8A-A41E-F63794E83912}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe_Brauerei", "Console_Brauerei\Aufgabe_Brauerei.csproj", "{C99BDDC0-B491-4A8A-A41E-F63794E83912}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Variablen_Datentypen", "Variablen_Datentypen\Variablen_Datentypen.csproj", "{FBB62E72-B561-4241-B195-B55784F86FA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brauerei_Lösung", "Brauerei_Lösung\Brauerei_Lösung.csproj", "{24F161FA-72F0-4AC9-86E8-32296FF87A23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe_Brauerei_Lösung", "Brauerei_Lösung\Aufgabe_Brauerei_Lösung.csproj", "{24F161FA-72F0-4AC9-86E8-32296FF87A23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErstesProgramm", "ErstesProgramm\ErstesProgramm.csproj", "{3D384E42-0470-44AC-9B76-D8C4FD847A05}"
 EndProject
@@ -21,17 +21,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schleifen_Loop", "Schleifen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Typkonvertierung", "Typkonvertierung\Typkonvertierung.csproj", "{04D565E5-34F6-48B9-AB5E-A675FEF2592C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schaltjahr", "Schaltjahr\Schaltjahr.csproj", "{B62381A0-ACDC-4621-976F-19C56EEC9313}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe_Schaltjahr", "Schaltjahr\Aufgabe_Schaltjahr.csproj", "{B62381A0-ACDC-4621-976F-19C56EEC9313}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schaltjahr_Lösung", "Schaltjahr_Lösung\Schaltjahr_Lösung.csproj", "{9896E3F9-9245-433B-B378-AF81344FFA92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe_Schaltjahr_Lösung", "Schaltjahr_Lösung\Aufgabe_Schaltjahr_Lösung.csproj", "{9896E3F9-9245-433B-B378-AF81344FFA92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wassermelone", "Wassermelone\Wassermelone.csproj", "{AF27C07A-261B-4E76-BE82-EC56207C5F6B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe_Wassermelone", "Wassermelone\Aufgabe_Wassermelone.csproj", "{AF27C07A-261B-4E76-BE82-EC56207C5F6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zahlen_In_Worten", "Zahlen_In_Worten\Zahlen_In_Worten.csproj", "{BECB0E95-1486-4243-9D17-63411B8F7740}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe_Zahlen_In_Worten", "Zahlen_In_Worten\Aufgabe_Zahlen_In_Worten.csproj", "{BECB0E95-1486-4243-9D17-63411B8F7740}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warm-Kalt", "Warm-Kalt\Warm-Kalt.csproj", "{0B350DDD-BF6F-47CB-AB48-3140B871F752}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe_Warm-Kalt", "Warm-Kalt\Aufgabe_Warm-Kalt.csproj", "{0B350DDD-BF6F-47CB-AB48-3140B871F752}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warm-Kalt-v2", "Warm-Kalt-v2\Warm-Kalt-v2.csproj", "{399D9505-54E8-4DCB-8070-566B464E2E86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe_Warm-Kalt-v2", "Warm-Kalt-v2\Aufgabe_Warm-Kalt-v2.csproj", "{399D9505-54E8-4DCB-8070-566B464E2E86}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fallunterscheidung_Switch", "Fallunterscheidung_Switch\Fallunterscheidung_Switch.csproj", "{A66C5A89-93A4-4F38-A310-8FFCEB54709E}"
 EndProject
@@ -86,6 +86,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe_Wecker", "Aufgabe_Wecker\Aufgabe_Wecker.csproj", "{3BAF0208-2B2A-402D-9C28-9930818EDC57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liste", "Liste\Liste.csproj", "{F7158832-73AD-4819-AB78-2F55BEC68A68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hash", "Hash\Hash.csproj", "{9C1AAF6B-A0E3-4F72-999C-BE73E7B7B736}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe_Lagersystem", "Aufgabe_Lagersystem\Aufgabe_Lagersystem.csproj", "{95164051-7C09-40D5-A4E8-7D97E99A5133}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nullable", "Nullable\Nullable.csproj", "{262004B5-C91D-4692-9A3C-02491CB6F5BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe_Hangman", "Aufgabe_Hangman\Aufgabe_Hangman.csproj", "{02FC5E00-4718-4336-8A54-A5B191E17D4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -261,6 +269,22 @@ Global
 		{F7158832-73AD-4819-AB78-2F55BEC68A68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7158832-73AD-4819-AB78-2F55BEC68A68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7158832-73AD-4819-AB78-2F55BEC68A68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C1AAF6B-A0E3-4F72-999C-BE73E7B7B736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C1AAF6B-A0E3-4F72-999C-BE73E7B7B736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C1AAF6B-A0E3-4F72-999C-BE73E7B7B736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C1AAF6B-A0E3-4F72-999C-BE73E7B7B736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95164051-7C09-40D5-A4E8-7D97E99A5133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95164051-7C09-40D5-A4E8-7D97E99A5133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95164051-7C09-40D5-A4E8-7D97E99A5133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95164051-7C09-40D5-A4E8-7D97E99A5133}.Release|Any CPU.Build.0 = Release|Any CPU
+		{262004B5-C91D-4692-9A3C-02491CB6F5BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262004B5-C91D-4692-9A3C-02491CB6F5BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{262004B5-C91D-4692-9A3C-02491CB6F5BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262004B5-C91D-4692-9A3C-02491CB6F5BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02FC5E00-4718-4336-8A54-A5B191E17D4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02FC5E00-4718-4336-8A54-A5B191E17D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02FC5E00-4718-4336-8A54-A5B191E17D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02FC5E00-4718-4336-8A54-A5B191E17D4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

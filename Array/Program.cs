@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             // Array: Collection => Möglichkeit, mehrere Werte unter einem Bezeichner zu speichern
-            // Einzelne Einträge eines Arrays werden auch als Felder oder Werfelder bezeichnet
+            // Einzelne Einträge eines Arrays werden auch als Felder oder Wertfelder bezeichnet
 
             int[] intArr = new int[5]; // Index: 0 bis 4
 

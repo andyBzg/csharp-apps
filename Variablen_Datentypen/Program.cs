@@ -55,6 +55,17 @@
             char zeichen = 'A'; // 2 Byte, 16 Bit, Unicode
 
             string wort = "Hallo"; // Die Größe bemisst sich nach dem Inhalt des Strings | 2 Byte pro Zeichen, 16 Bit pro Zeichen, Unicode
+
+            // Casting
+            // Umwandeln von einem Wert des einen Datentyps in den Wert eines anderen Datentyps
+            double fliesskomma = 10.5;
+            int umgewandelt = (int)fliesskomma;
+            Console.WriteLine(umgewandelt);
+
+            umgewandelt = Convert.ToInt32(fliesskomma);
+            Console.WriteLine(umgewandelt);
+
+            int.TryParse(wort, out umgewandelt);
         }
     }
 }
