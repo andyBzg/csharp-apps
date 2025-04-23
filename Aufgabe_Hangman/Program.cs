@@ -23,11 +23,13 @@ namespace Aufgabe_Hangman
     {
         static void Main(string[] args)
         {
-            string str = "";
-            Console.WriteLine(str.Length);
-            Console.ReadKey();
-            //VersionOne();
+            VersionOne();
 
+            //VersionTwo();
+        }
+
+        private static void VersionTwo()
+        {
             string ueberschrift = "====== Hangman ======\n\n";
             List<string> galgenteile = new List<string> { @"
                   #======
@@ -122,14 +124,6 @@ namespace Aufgabe_Hangman
                 =============="
             };
 
-            foreach (var item in galgenteile)
-            {
-                Console.WriteLine(item);
-                Thread.Sleep(1000);
-                Console.Clear();
-            }
-            Console.ReadKey();
-
             while (true)
             {
                 int fehler = 0;
@@ -150,18 +144,25 @@ namespace Aufgabe_Hangman
                 {
                     Console.Clear();
                     Console.WriteLine(ueberschrift);
+
+                    if (fehler > 0)
+                    {
+                        Console.WriteLine(galgenteile[fehler - 1]);
+                        if (fehler > galgenteile.Count)
+                        {
+                            gameover = true;
+                            break;
+                        }
+                    }
+
                     for (int i = 0; i < geheim.Length; i++)
                     {
                         if (gefundenesWort.Length == geheim.Length)
                         {
                             if (gefundenesWort[i] == '_')
-                            {
                                 platzhalter += "_";
-                            }
                             else
-                            {
                                 platzhalter += gefundenesWort[i];
-                            }
                         }
                         else
                         {
@@ -188,14 +189,35 @@ namespace Aufgabe_Hangman
                                 }
                                 else
                                 {
-                                    neuesWort += "_";
+                                    neuesWort += gefundenesWort[i];
                                 }
-                            }
-                        }
 
+                            }
+                            if (gefundenesWort == neuesWort)
+                            {
+                                fehler++;
+                            }
+                            gefundenesWort = neuesWort;
+                        }
+                        else
+                            fehler++;
 
                         platzhalter = "";
+
+                        if (geheim == gefundenesWort)
+                            break;
                     }
+                    if (gameover)
+                    {
+                        Console.WriteLine("Spieler 2 du hast verloren, Spieler 1 ist der Gewinner");
+                        Console.ReadKey();
+                    }
+                    else if (geheim == gefundenesWort)
+                    {
+                        Console.WriteLine("Spieler 2 du hast gewonnen, Spieler 1 hat verloren");
+                        Console.ReadKey();
+                    }
+
                 }
             }
         }
@@ -216,33 +238,41 @@ namespace Aufgabe_Hangman
             Console.WriteLine(hangman);
 
             string? versteckteWort, versuch;
-            List<char> errateneChars = new List<char>();
 
             versteckteWort = GetNutzerEingabe("[Spieler 1] \nBitte geben Sie ein Wort ein: ");
+            char[] errateneBuchstaben = new char[versteckteWort.Length];
 
             Console.Clear();
             Console.WriteLine(hangman);
-            //PrintVersteckteWort(versteckteWort);
+            for (int i = 0; i < errateneBuchstaben.Length; i++)
+            {
+                if (errateneBuchstaben[i] == 0)
+                    Console.WriteLine(errateneBuchstaben[i]);
+            }
+            Console.WriteLine();
+            Console.ReadLine();
 
             versuch = GetNutzerEingabe("[Spieler 2] \nBitte geben Sie einen Buchstaben ein oder erraten Sie das ganze Wort: ");
 
-            if (versuch.Length > 1)
+            if (versteckteWort.Length == versuch.Length)
             {
                 if (versuch == versteckteWort)
-                    Console.WriteLine("Glückwunsch! Sie haben gewonnen!");
+                    Console.WriteLine("Glückwunsch! Spieler 2 hat gewonnen!");
                 else
                 {
-                    Console.WriteLine("You lose. Game over");
+                    Console.WriteLine("Spieler 1 hat gewonnen. Game over");
                     Console.WriteLine($"Das richtige Wort war: *{char.ToUpper(versteckteWort[0])}{versteckteWort.Substring(1)}*");
                     Console.ReadKey();
                 }
             }
-            else
+            else if (versuch.Length == 1)
             {
                 for (int i = 0; i < versteckteWort.Length; i++)
                 {
                     if (versteckteWort[i] == Convert.ToChar(versuch))
-                        errateneChars.Add(versteckteWort[i]);
+                    {
+                        errateneBuchstaben[i] = Convert.ToChar(versuch);
+                    }
                 }
             }
         }

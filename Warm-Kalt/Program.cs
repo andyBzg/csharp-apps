@@ -35,12 +35,13 @@
 
             do
             {
-                int versuch, counter = 0, prevDif = int.MaxValue;
+                int versuch, counter = 0;
 
                 Console.Write("Schwierigkeitsgrad auswählen.\nMöchten Sie Hardmode (Zahlen von 1 bis 1000) spielen? (y/n): ");
                 bool hardmode = Console.ReadLine()?.ToLower() == "y";
                 int maxZahl = hardmode ? 1000 : 100;
                 int random = rnd.Next(1, maxZahl + 1);
+                int prevDif = maxZahl;
 
                 Console.WriteLine($"Das Spiel beginnt! Erraten Sie eine Zahl von 1 bis {maxZahl}.");
 
