@@ -23,9 +23,9 @@ namespace Aufgabe_Hangman
     {
         static void Main(string[] args)
         {
-            VersionOne();
+            //VersionOne();
 
-            //VersionTwo();
+            VersionTwo();
         }
 
         private static void VersionTwo()
@@ -131,24 +131,24 @@ namespace Aufgabe_Hangman
                 string gefundenesWort = "";
                 string platzhalter = "";
                 Console.Clear();
-                Console.WriteLine(ueberschrift);
-                Console.Write("Hallo Spieler 1, gebe ein geheimes Wort ein: ");
-                string geheim = (Console.ReadLine() ?? "").Trim().ToLower();
+                System.Console.WriteLine(ueberschrift);
+                System.Console.Write("Hallo Spieler 1 gebe ein geheimes Wort ein: ");
+                string geheim = Console.ReadLine() ?? "";
                 if (geheim == "")
                 {
-                    Console.WriteLine("Spieler 1 hat nichts eingegeben");
+                    System.Console.WriteLine("Spieler 1 hat nichts eingegeben");
                     break;
                 }
 
                 while (true)
                 {
                     Console.Clear();
-                    Console.WriteLine(ueberschrift);
+                    System.Console.WriteLine(ueberschrift);
 
                     if (fehler > 0)
                     {
-                        Console.WriteLine(galgenteile[fehler - 1]);
-                        if (fehler > galgenteile.Count)
+                        System.Console.WriteLine(galgenteile[fehler - 1]);
+                        if (fehler >= galgenteile.Count)
                         {
                             gameover = true;
                             break;
@@ -160,65 +160,57 @@ namespace Aufgabe_Hangman
                         if (gefundenesWort.Length == geheim.Length)
                         {
                             if (gefundenesWort[i] == '_')
+                            {
                                 platzhalter += "_";
-                            else
-                                platzhalter += gefundenesWort[i];
+                            }
+                            else platzhalter += gefundenesWort[i];
                         }
                         else
                         {
                             platzhalter += "_";
                             gefundenesWort += "_";
                         }
-                        Console.WriteLine(platzhalter + "\n\n");
-                        Console.Write("Hey Spieler 2, gebe einen Buchstaben oder das ganze Wort ein: ");
-                        string gefunden = (Console.ReadLine() ?? "").Trim().ToLower();
+                    }
+                    System.Console.WriteLine(platzhalter + "\n\n");
+                    System.Console.Write("Hey Spieler 2 gebe einen Buchstaben oder das ganze Wort ein: ");
+                    string gefunden = Console.ReadLine() ?? "";
 
-
-                        if (gefunden == gefundenesWort)
+                    if (geheim.ToLower() == gefunden.ToLower())
+                    {
+                        gefundenesWort = gefunden;
+                        break;
+                    }
+                    else if (gefunden.Length == 1)
+                    {
+                        string neuesWort = "";
+                        for (int i = 0; i < geheim.Length; i++)
                         {
-                            break;
-                        }
-                        else if (gefunden.Length == 1)
-                        {
-                            string neuesWort = "";
-                            for (int j = 0; j < geheim.Length; j++)
+                            if (geheim[i].ToString().ToLower() == gefunden.ToLower())
                             {
-                                if (geheim[i].ToString() == gefunden)
-                                {
-                                    neuesWort += gefunden;
-                                }
-                                else
-                                {
-                                    neuesWort += gefundenesWort[i];
-                                }
+                                if (i == 0) neuesWort += gefunden.ToUpper();
+                                else neuesWort += gefunden.ToLower();
 
                             }
-                            if (gefundenesWort == neuesWort)
-                            {
-                                fehler++;
-                            }
-                            gefundenesWort = neuesWort;
+                            else neuesWort += gefundenesWort[i];
                         }
-                        else
-                            fehler++;
-
-                        platzhalter = "";
-
-                        if (geheim == gefundenesWort)
-                            break;
+                        if (gefundenesWort == neuesWort) fehler++;
+                        gefundenesWort = neuesWort;
                     }
-                    if (gameover)
-                    {
-                        Console.WriteLine("Spieler 2 du hast verloren, Spieler 1 ist der Gewinner");
-                        Console.ReadKey();
-                    }
-                    else if (geheim == gefundenesWort)
-                    {
-                        Console.WriteLine("Spieler 2 du hast gewonnen, Spieler 1 hat verloren");
-                        Console.ReadKey();
-                    }
+                    else fehler++;
 
+                    platzhalter = "";
+                    if (geheim.ToLower() == gefundenesWort.ToLower()) break;
                 }
+
+                if (gameover)
+                {
+                    System.Console.WriteLine("Spieler 2 du hast verloren, Spieler 1 ist der Gewinner!");
+                }
+                else if (geheim.ToLower() == gefundenesWort.ToLower())
+                {
+                    System.Console.WriteLine("Speieler 2 du hast gewonnen, Spieler 1 hat verloren!");
+                }
+                Console.ReadKey();
             }
         }
 
@@ -242,39 +234,44 @@ namespace Aufgabe_Hangman
             versteckteWort = GetNutzerEingabe("[Spieler 1] \nBitte geben Sie ein Wort ein: ");
             char[] errateneBuchstaben = new char[versteckteWort.Length];
 
-            Console.Clear();
-            Console.WriteLine(hangman);
-            for (int i = 0; i < errateneBuchstaben.Length; i++)
+            do
             {
-                if (errateneBuchstaben[i] == 0)
-                    Console.WriteLine(errateneBuchstaben[i]);
-            }
-            Console.WriteLine();
-            Console.ReadLine();
-
-            versuch = GetNutzerEingabe("[Spieler 2] \nBitte geben Sie einen Buchstaben ein oder erraten Sie das ganze Wort: ");
-
-            if (versteckteWort.Length == versuch.Length)
-            {
-                if (versuch == versteckteWort)
-                    Console.WriteLine("Glückwunsch! Spieler 2 hat gewonnen!");
-                else
+                Console.Clear();
+                Console.WriteLine(hangman);
+                Console.Write("Wort: ");
+                for (int i = 0; i < errateneBuchstaben.Length; i++)
                 {
-                    Console.WriteLine("Spieler 1 hat gewonnen. Game over");
-                    Console.WriteLine($"Das richtige Wort war: *{char.ToUpper(versteckteWort[0])}{versteckteWort.Substring(1)}*");
-                    Console.ReadKey();
+                    if (errateneBuchstaben[i] == 0)
+                        Console.Write(errateneBuchstaben[i]);
                 }
-            }
-            else if (versuch.Length == 1)
-            {
-                for (int i = 0; i < versteckteWort.Length; i++)
+                Console.WriteLine();
+                Console.ReadLine();
+
+                versuch = GetNutzerEingabe("[Spieler 2] \nBitte geben Sie einen Buchstaben ein oder erraten Sie das ganze Wort: ");
+
+                if (versteckteWort.Length == versuch.Length)
                 {
-                    if (versteckteWort[i] == Convert.ToChar(versuch))
+                    if (versuch == versteckteWort)
+                        Console.WriteLine("Glückwunsch! Spieler 2 hat gewonnen!");
+                    else
                     {
-                        errateneBuchstaben[i] = Convert.ToChar(versuch);
+                        Console.WriteLine("Spieler 1 hat gewonnen. Game over");
+                        Console.WriteLine($"Das richtige Wort war: *{char.ToUpper(versteckteWort[0])}{versteckteWort.Substring(1)}*");
+                        Console.ReadKey();
+                    }
+                }
+                else if (versuch.Length == 1)
+                {
+                    for (int i = 0; i < versteckteWort.Length; i++)
+                    {
+                        if (versteckteWort[i] == Convert.ToChar(versuch))
+                        {
+                            errateneBuchstaben[i] = Convert.ToChar(versuch);
+                        }
                     }
                 }
             }
+            while (true);
         }
 
         private static string GetNutzerEingabe(string message)
