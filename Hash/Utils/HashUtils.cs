@@ -1,11 +1,16 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Hash
+namespace Hash.Utils
 {
     public static class HashUtils
     {
-        public static string GetHash(string input)
+        /// <summary>
+        /// Computes the SHA256 hash for the provided input string.
+        /// </summary>
+        /// <param name="input">The string to hash.</param>
+        /// <returns>The hexadecimal representation of the hash.</returns>
+        public static string ComputeSHA256Hash(string input)
         {
             if (string.IsNullOrEmpty(input)) throw new ArgumentException("Input cannot be null or empty", nameof(input));
 
@@ -23,11 +28,17 @@ namespace Hash
             }
         }
 
-        public static bool VerifyHash(string input, string hash)
+        /// <summary>
+        /// Verifies if the input string matches the provided hash using SHA256.
+        /// </summary>
+        /// <param name="input">The original string to verify.</param>
+        /// <param name="hash">The hash to compare against.</param>
+        /// <returns>True if the input string matches the hash; otherwise, false.</returns>
+        public static bool VerifySHA256Hash(string input, string hash)
         {
             if (string.IsNullOrEmpty(input)) throw new ArgumentException("Input cannot be null or empty", nameof(input));
 
-            var hashOfInput = GetHash(input);
+            var hashOfInput = ComputeSHA256Hash(input);
 
             StringComparer comparer = StringComparer.OrdinalIgnoreCase;
 

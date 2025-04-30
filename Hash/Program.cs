@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using System.Text;
+﻿using Hash.Utils;
 
 namespace Hash
 {
@@ -7,55 +6,36 @@ namespace Hash
     {
         static void Main(string[] args)
         {
-            string input = "Hello World!";
+            string message = "Please provide the string to generate a hash value: ";
+            string errorMessage = "Input cannot be empty. Please provide a valid string to hash.";
+            string hintToPressKey = "Please press any key ...";
 
-            string hash = HashUtils.GetHash(input);
-            bool isSame = HashUtils.VerifyHash(input, hash);
+            string input = UserInputUtils.ReadValidatedStringInput(message, errorMessage);
+            string hash = HashUtils.ComputeSHA256Hash(input);
 
-            if (isSame)
-                Console.WriteLine("The hashes are the same.");
-            else
-                Console.WriteLine("The hashes are not the same");
-
-            /*using (SHA256 sha256Hash = SHA256.Create())
-            {
-                string hash = GetHash(sha256Hash, input);
-
-                Console.WriteLine($"The SHA256 hash of {input} is: {hash}");
-
-                Console.WriteLine("Verifying the hash ...");
-
-                if (VerifyHash(sha256Hash, input, hash))
-                {
-                    Console.WriteLine("The hashes are the same.");
-                }
-                else
-                {
-                    Console.WriteLine("The hashes are not the same");
-                }
-            }*/
+            Console.Clear();
+            ShowComputingInput(input);
+            ShowLoadingProgress(5, "*", 500);
+            Console.Clear();
+            ShowComputingInput(input);
+            Console.WriteLine(hash);
+            Console.WriteLine();
+            UserInputUtils.WaitUserKey(hintToPressKey);
         }
 
-        private static string GetHash(HashAlgorithm hashAlgorithm, string input)
+        private static void ShowLoadingProgress(int length, string symbol, int delayMills)
         {
-            byte[] data = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
-            var sBuilder = new StringBuilder();
-
-            for (int i = 0; i < data.Length; i++)
+            for (int i = 0; i < length; i++)
             {
-                sBuilder.Append(data[i].ToString("x2"));
+                Console.Write(symbol);
+                Thread.Sleep(delayMills);
             }
-
-            return sBuilder.ToString();
         }
 
-        private static bool VerifyHash(HashAlgorithm hashAlgorithm, string input, string hash)
+        private static void ShowComputingInput(string input)
         {
-            var hashOfInput = GetHash(hashAlgorithm, input);
-
-            StringComparer comparer = StringComparer.OrdinalIgnoreCase;
-
-            return comparer.Compare(hashOfInput, hash) == 0;
+            Console.WriteLine($"Computing Hash for: {input}");
+            Console.Write("Hash: ");
         }
     }
 }
