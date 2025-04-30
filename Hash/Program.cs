@@ -9,7 +9,15 @@ namespace Hash
         {
             string input = "Hello World!";
 
-            using (SHA256 sha256Hash = SHA256.Create())
+            string hash = HashUtils.GetHash(input);
+            bool isSame = HashUtils.VerifyHash(input, hash);
+
+            if (isSame)
+                Console.WriteLine("The hashes are the same.");
+            else
+                Console.WriteLine("The hashes are not the same");
+
+            /*using (SHA256 sha256Hash = SHA256.Create())
             {
                 string hash = GetHash(sha256Hash, input);
 
@@ -25,7 +33,7 @@ namespace Hash
                 {
                     Console.WriteLine("The hashes are not the same");
                 }
-            }
+            }*/
         }
 
         private static string GetHash(HashAlgorithm hashAlgorithm, string input)
