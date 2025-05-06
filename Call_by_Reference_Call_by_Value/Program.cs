@@ -10,13 +10,19 @@
             // Call by Reference
             CallByReference();
 
+            // out-Schlüsselwort mit Try Parse Methode
+            CustomTryParse();
+        }
+
+        private static void CustomTryParse()
+        {
             // Beuen einer eigenen Try Parse Methode
 
             bool TryParseStringToInt(string? meinText, out int zahl)
             {
                 zahl = 0;
-                if (meinText == null)                
-                    return false;                
+                if (meinText == null)
+                    return false;
 
                 try
                 {
@@ -31,10 +37,10 @@
 
             void Test(bool hatGeklappt, int eingabe)
             {
-                if (hatGeklappt)                
-                    Console.WriteLine("Deine Eingabe ist eine Zahl: " + eingabe);                
-                else                
-                    Console.WriteLine("Gebe eine Zahl ein");                
+                if (hatGeklappt)
+                    Console.WriteLine("Deine Eingabe ist eine Zahl: " + eingabe);
+                else
+                    Console.WriteLine("Gebe eine Zahl ein");
             }
 
             string stringOhneZahl = "Das ist ein string";
