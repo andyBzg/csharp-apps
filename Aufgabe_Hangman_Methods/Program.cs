@@ -4,10 +4,111 @@
     {
         static void Main(string[] args)
         {
+            List<string> galgenteile = new List<string> { 
+@"   #======
+   #     | 
+   #     
+   #     
+   #     
+   #     
+   #     
+   #      
+   #
+ ==============" , 
+@"   #======
+   #     | 
+   #     @
+   #     ^
+   #     
+   #     
+   #     
+   #      
+   #
+ ==============" , 
+@"   #======
+   #     | 
+   #     @
+   #     ^
+   #     | 
+   #     ^
+   #     
+   #      
+   #
+ ==============" , 
+@"   #======
+   #     | 
+   #     @
+   #     ^
+   #   / | 
+   #     ^
+   #     
+   #      
+   #
+ ==============" , 
+@"   #======
+   #     | 
+   #     @
+   #     ^
+   #   / | \
+   #     ^
+   #     
+   #      
+   #
+ ==============" , 
+@"   #======
+   #     | 
+   #     @
+   #     ^
+   #   / | \
+   #     ^
+   #    / 
+   #      
+   #
+ ==============" , 
+@"   #======
+   #     | 
+   #     @
+   #     ^
+   #   / | \
+   #     ^
+   #    / 
+   #   /   
+   #
+ ==============" , 
+@"   #======
+   #     | 
+   #     @
+   #     ^
+   #   / | \
+   #     ^
+   #    / \
+   #   /   
+   #
+ ==============" , 
+@"   #======
+   #     | 
+   #     @
+   #     ^
+   #   / | \
+   #     ^
+   #    / \
+   #   /   \
+   #
+ =============="
+            };
+
             void Ueberschrift()
             {
                 Console.Clear();
                 Console.WriteLine("====== HANGMAN ======\n");
+            }
+
+            void ZeigeGalgenteile(List<string> galgenteile, int fehler)
+            {
+                if (fehler != galgenteile.Count)                
+                    Console.WriteLine(galgenteile[fehler]);
+
+                Console.WriteLine();
             }
 
             string LeseSpielerEingabe(string message)
@@ -61,6 +162,7 @@
             int fehler = 0;
 
             Ueberschrift();
+            ZeigeGalgenteile(galgenteile, fehler);
             string geheimesWort = LeseSpielerEingabe("Hallo Spieler 1, gebe ein geheimes Wort ein: ");
             string erratenesWort = "";
             char[] errateneBuchstaben = Enumerable.Repeat('_', geheimesWort.Length).ToArray();
@@ -69,8 +171,9 @@
             do
             {
                 Ueberschrift();
+                ZeigeGalgenteile(galgenteile, fehler);
                 Console.WriteLine($"Anzahl Fehler: {fehler}");
-                if (fehler == 4) //Replace with Hangman index
+                if (fehler == galgenteile.Count - 1)
                 {
                     Console.WriteLine("Game Over");
                     Console.ReadKey();
@@ -105,7 +208,7 @@
                 else if (versuch.Length == 1)
                 {
                     if (errateneBuchstaben.Contains(Convert.ToChar(versuch)))
-                    {
+                    {                        
                         fehler++;
                     }
                     else if (geheimesWort.Contains(versuch))

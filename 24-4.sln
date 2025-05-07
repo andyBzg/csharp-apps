@@ -111,6 +111,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Call_by_Reference_Call_by_V
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aufgabe_Call_By_Value-Reference", "Aufgabe_Call_By_Value-Reference\Aufgabe_Call_By_Value-Reference.csproj", "{532EDF14-FFD5-4657-B401-1175CB31F2B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vererbung", "Vererbung\Vererbung.csproj", "{4B9DBA69-08E7-4CD4-AABC-E8C56F75267E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -333,6 +335,10 @@ Global
 		{532EDF14-FFD5-4657-B401-1175CB31F2B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{532EDF14-FFD5-4657-B401-1175CB31F2B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{532EDF14-FFD5-4657-B401-1175CB31F2B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B9DBA69-08E7-4CD4-AABC-E8C56F75267E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B9DBA69-08E7-4CD4-AABC-E8C56F75267E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B9DBA69-08E7-4CD4-AABC-E8C56F75267E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B9DBA69-08E7-4CD4-AABC-E8C56F75267E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
