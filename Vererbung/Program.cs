@@ -16,8 +16,6 @@ class Kind : Eltern // WICHTIG: Jede Klasse kann jeweils nur von einer anderen K
 }
 */
 
-using System.ComponentModel;
-
 Hund dogmeat = new Hund("Dogmeat");
 dogmeat.Bewegen();
 dogmeat.Bellen();
