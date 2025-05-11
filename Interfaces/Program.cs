@@ -3,16 +3,16 @@
 
 // Aufbau eines Interfaces
 
-// Ein Interface nutzt ausschließlich Signaturen bedeutet sämliche elemente haben naormalerweise keine Implementierung
+// Ein Interface nutzt ausschließlich Signaturen bedeutet sämtliche Elemente haben normalerweise keine Implementierung
 // In Interfaces sind Felder nicht vorhanden
 // Eigenschaften sind jedoch erlaubt
 
 /*public interface IBeweglich
 {
     void Bewege(float x, float y); // Methoden können deklariert werden (aber nicht implementiert)
-    float Geschwindigkeit { get; set; } // Das gleiche gilt für Eigenschaften
+    float Geschwindigkeit { get; set; } // Dasselbe gilt für Eigenschaften
 
-    // Felder gibt es keine
+    // Es gibt keine Felder
 }
 
 // Beispiel:
@@ -78,15 +78,15 @@ class WetterStation : ITemperatur
 
     //public double TemperaturFahrenheit { get; set; }
 
-    // aber genau die implementierung von Logik basierten Interfaces würde die interessant machen zb. ein Klasse Auto hat
-    // Interface Bauteile wie Motor der etwas kann, Turboloader der etwas kann usw...
-    // In C# 8 wurden default Interface implementation eingeführt aber sie sind auf halben weg stehen geblieben
-    // Microsoft macht das nicht aus Sicherheits und Klarheitsgründen denn Interfaces sollen keine Konflikte verursachen
-    // denn wenn mehrere Interfaces gleichnamige Props oder Methoden mit default Logik haben könnte es eben zu Konflikten führen
-    // Vielleicht gibt es für C# 13 ausblicke über Mixins "traits like behavior" oder Interface Compositions
-    // Das Thema composable logik components ist erkannt aber wurde in C# nie vollständig ausgearbeitet 
+    // Genau die Implementierung von logikbasierten Interfaces würde sie interessant machen z.B. ein Klasse Auto hat
+    // Interface-Bauteile wie Motor, der etwas kann, oder Turbolader, der etwas kann, usw.
+    // In C# 8 wurden default Interface implementation eingeführt. Aber sie sind auf halben Weg stehen geblieben
+    // Microsoft macht das aus Sicherheits- und Klarheitsgründen nicht, denn Interfaces sollen keine Konflikte verursachen
+    // Denn wenn mehrere Interfaces gleichnamige Eigenschaften oder Methoden mit Standard-Logik haben könnte es eben zu Konflikten führen
+    // Vielleicht gibt es für C# 13 Ausblicke über Mixins, "traits like behavior" oder Interface Compositions
+    // Das Thema composable logik components ist erkannt, aber wurde in C# nie vollständig ausgearbeitet 
 
-    // How Break this Old Stuff
+    // Wie man dieses alte Konzept aufbricht
 
     private double _temperaturFahrenheit => ((ITemperatur)this).TemperaturFahrenheit;
 
